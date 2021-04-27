@@ -112,7 +112,11 @@ module.exports = {
                       thumbnail {
                         childImageSharp {
                           fluid(maxWidth: 400) {
-                            ...GatsbyImageSharpFluid
+                            base64
+                            aspectRatio
+                            src
+                            srcSet
+                            sizes
                           }
                         }
                       }
