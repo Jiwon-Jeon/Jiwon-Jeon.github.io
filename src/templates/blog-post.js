@@ -25,30 +25,20 @@ const BlogPostTemplate = ({ data, location }) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
+          <h2 itemProp="headline">{post.frontmatter.title}</h2>
           <p>{post.frontmatter.date}</p>
         </header>
         <p>{post.frontmatter.writter}님의 글입니다</p>
-        
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
-        <hr />
-        <footer>
+        <footer className='lc-post-footer'>
           <Bio writter={post.frontmatter.writter}/>
         </footer>
       </article>
       <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
+        <ul>
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
@@ -92,6 +82,7 @@ export const pageQuery = graphql`
         description
         tag
         writter
+        thumbImage
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

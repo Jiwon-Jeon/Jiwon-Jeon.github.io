@@ -27,7 +27,6 @@ const Bio = ({writter}) => {
     }
   `)
 
-  console.log(writter)
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
   const social = data.site.siteMetadata?.social
@@ -46,25 +45,13 @@ const Bio = ({writter}) => {
         alt="Profile picture"
       /> */}
       {writter && (
-        <>
-          <span style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: 50,
-            height: 50,
-            backgroundColor: "#"+(parseInt(Math.random()*0xffffff)).toString(16),
-            borderRadius: 50,
-          }}>
-            <span style={{
-              color: "white",
-              fontWeight: 700
-            }}>{writter}</span>
-          </span>
-          <p>
-            Written by <strong>{writter}</strong>
-          </p>
-        </>
+        <div className='lc-bio-wrap'>
+          <div className='lc-bio-thumb'
+               style={{backgroundColor: "#"+(parseInt(Math.random()*0xffffff)).toString(16)}}>
+            <span className='lc-bio-thumb-name'>{writter}</span>
+          </div>
+          <p className='lc-bio-author'>Written by <strong>{writter}</strong></p>
+        </div>
       )}
     </div>
   )

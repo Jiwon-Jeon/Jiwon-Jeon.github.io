@@ -68,38 +68,42 @@ const BlogIndex = ({ data, location }) => {
             <Seo title="All posts" />
             <div className='lc-categories'>
                 <button onClick={() => setTag('')}>Home</button>
-                {categories.map((category) => {
-                    return (<button onClick={() => setTag(category.fieldValue)}>{category.fieldValue}</button>)
+                {categories.map((category,index) => {
+                    return (<button key={index} onClick={() => setTag(category.fieldValue)}>{category.fieldValue}</button>)
                 })}
             </div>
             <ol className='lc-post-list'>
                 {rows.length && rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
                     const title = post.frontmatter.title || post.fields.slug
-
+                    console.log(123,post);
                     return (
                         <li key={post.fields.slug}>
-                            <article
-                                className="post-list-item"
-                                itemScope
-                                itemType="http://schema.org/Article"
-                            >
-                                <header>
-                                    <h2>
-                                        <Link to={post.fields.slug} itemProp="url">
-                                            <span itemProp="headline">{title}</span>
-                                        </Link>
-                                    </h2>
-                                    <small>{post.frontmatter.date}</small>
-                                </header>
-                                <section>
-                                    <div
-                                        dangerouslySetInnerHTML={{
-                                            __html: post.frontmatter.description || post.excerpt,
-                                        }}
-                                        itemProp="description"
-                                    />
-                                </section>
-                            </article>
+                            <Link to={post.fields.slug} itemProp="url">
+                                <article
+                                    className="post-list-item"
+                                    itemScope
+                                    itemType="http://schema.org/Article"
+                                >
+                                    <div className="lc-post-thumb">
+                                        {post.fields.slug}
+                                        {post.frontmatter.thumbImage ? post.frontmatter.thumbImage : '-'}
+                                    </div>
+                                    <header>
+                                        <small>{post.frontmatter.date}</small>
+                                        <h2>
+                                                <span itemProp="headline">{title}</span>
+                                        </h2>
+                                    </header>
+                                    <section>
+                                        <div
+                                            dangerouslySetInnerHTML={{
+                                                __html: post.frontmatter.description || post.excerpt,
+                                            }}
+                                            itemProp="description"
+                                        />
+                                    </section>
+                                </article>
+                            </Link>
                         </li>
                     )
                 })}
@@ -132,6 +136,7 @@ export const pageQuery = graphql`
           description
           tag
           writter
+          thumbImage
         }
       }
     }
