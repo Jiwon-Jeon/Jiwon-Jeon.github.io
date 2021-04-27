@@ -72,6 +72,12 @@ const BlogIndex = ({ data, location }) => {
                     return (<button key={index} onClick={() => setTag(category.fieldValue)}>{category.fieldValue}</button>)
                 })}
             </div>
+            {tag ?
+                <div className='lc-search-post-top'>
+                    <span>{tag}</span>
+                    <i>게시물 {rows.filter((post) => tag === post.frontmatter.tag).length} 개</i>
+                </div>
+            : null}
             <ol className='lc-post-list'>
                 {rows.length && rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
                     const title = post.frontmatter.title || post.fields.slug
@@ -85,8 +91,7 @@ const BlogIndex = ({ data, location }) => {
                                     itemType="http://schema.org/Article"
                                 >
                                     <div className="lc-post-thumb">
-                                        {post.fields.slug}
-                                        {post.frontmatter.thumbImage ? post.frontmatter.thumbImage : '-'}
+
                                     </div>
                                     <header>
                                         <small>{post.frontmatter.date}</small>

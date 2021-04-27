@@ -54,11 +54,25 @@
         }
     }
 }
-
+.lc-search-post-top{
+    padding: 20px 0 0;
+    span{
+        display: inline-block;
+        margin-right: 16px;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: $text-navy;
+    }
+    i{
+        font-style: normal;
+        font-size: 12px;
+        color: #999;
+    }
+}
 .lc-post-list{
     padding-top: 10px;
     li{
-        padding-bottom: 20px;
+        padding: 20px 0;
     }
     .post-list-item{
         small{
