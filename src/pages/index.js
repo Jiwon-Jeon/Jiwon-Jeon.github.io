@@ -1,4 +1,5 @@
 import * as React from "react"
+import {useState} from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -8,6 +9,9 @@ import Seo from "../components/seo"
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
+  const categories = data.allMarkdownRemark.group
+
+  const [tag, setTag] = useState("")
 
   // 작성된 게시글이 있을 때
   if (posts.length === 0) {
@@ -16,7 +20,7 @@ const BlogIndex = ({ data, location }) => {
         <Seo title="All posts" />
         <div className='lc-header-text'>
             <p>Linco Developer Page</p>
-            <p>린코 입니다.</p>
+            <p>Creative Idea,Design and Develop for you 마음 속의 아이디어를 현실로 잇는 창조의 링크.</p>
         </div>
       </Layout>
     )
@@ -28,11 +32,15 @@ const BlogIndex = ({ data, location }) => {
       <Seo title="All posts" />
         <div className='lc-header-text'>
             <p>Linco Developer Page</p>
-            <p>린코 입니다.</p>
+            <p>Creative Idea,Design and Develop for you 마음 속의 아이디어를 현실로 잇는 창조의 링크.</p>
+        </div>
+        <div className='lc-categories'>
+            {categories.map((category) => {
+              return (<button onClick={() => setTag(category.fieldValue)}>{category.fieldValue}</button>)
+            })}
         </div>
       <ol style={{ listStyle: `none` }}>
-
-        {posts.map(post => {
+        {posts.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
@@ -77,6 +85,9 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      group(field: frontmatter___tag) {
+        fieldValue
+      }
       nodes {
         excerpt
         fields {
