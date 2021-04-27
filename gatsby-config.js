@@ -10,6 +10,7 @@ module.exports = {
     social: {
       twitter: `kylemathews`,
     },
+    thumbnail: `/icons/icon-48x48.png`
   },
   plugins: [
     `gatsby-plugin-prettier-build`,
