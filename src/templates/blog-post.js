@@ -8,55 +8,63 @@ import Seo from "../components/seo"
 import "../assets/index.scss"
 
 const BlogPostTemplate = ({ data, location }) => {
-  const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const { previous, next } = data
+    const post = data.markdownRemark
+    const siteTitle = data.site.siteMetadata?.title || `Title`
+    const { previous, next } = data
 
-  return (
-    <Layout location={location} title={siteTitle}>
-      <Seo
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-      />
-      <article
-        id="post"
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h2 itemProp="headline">{post.frontmatter.title}</h2>
-          <p>{post.frontmatter.date}</p>
-        </header>
-        <p>{post.frontmatter.writter}님의 글입니다</p>
-        <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
-        <footer className='lc-post-footer'>
-          <Bio writter={post.frontmatter.writter}/>
-        </footer>
-      </article>
-      <nav className="blog-post-nav">
-        <ul>
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
-    </Layout>
-  )
+    return (
+        <Layout location={location} title={siteTitle}>
+            <Seo
+                title={post.frontmatter.title}
+                description={post.frontmatter.description || post.excerpt}
+            />
+            <article
+                id="post"
+                className="blog-post"
+                itemScope
+                itemType="http://schema.org/Article"
+            >
+                <header className='lc-post-header'>
+                    <h1 className='lc-post-title' itemProp="headline">{post.frontmatter.title}</h1>
+                    <div className='lc-post-info'>
+                        <span>{post.frontmatter.date}</span>
+                    </div>
+                </header>
+                {/*<p>{post.frontmatter.writter}님의 글입니다</p>*/}
+                <section
+                    dangerouslySetInnerHTML={{ __html: post.html }}
+                    itemProp="articleBody"
+                />
+                <footer className='lc-post-footer'>
+                    <Bio writter={post.frontmatter.writter}/>
+                </footer>
+            </article>
+            <nav className="blog-post-nav">
+                <ul>
+                    <li>
+                    {previous && (
+                        <span>
+                            <i>이전 글</i>
+                            <Link to={previous.fields.slug} rel="prev">
+                                {previous.frontmatter.title}
+                            </Link>
+                        </span>
+                    )}
+                    </li>
+                    <li>
+                        {next && (
+                            <span>
+                                <i>다음 글</i>
+                                <Link to={next.fields.slug} rel="next">
+                                    {next.frontmatter.title}
+                                </Link>
+                            </span>
+                        )}
+                    </li>
+                </ul>
+            </nav>
+        </Layout>
+    )
 }
 
 export default BlogPostTemplate

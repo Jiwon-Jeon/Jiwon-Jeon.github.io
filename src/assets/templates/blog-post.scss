@@ -245,6 +245,27 @@
             list-style-position: inside;
         }
     }
+    .lc-post-header{
+        padding-bottom: 20px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+        .lc-post-title{
+            margin: 20px 0 10px;
+        }
+        .lc-post-info{
+            span{
+                display: inline-block;
+                color: $theme-blue;
+                font-weight: 700;
+                margin-right: 10px;
+                font-size: 12px;
+            }
+            i{
+                font-style: normal;
+            }
+        }
+    }
 }
 .blog-post-nav{
     padding-top: 20px;
@@ -255,9 +276,25 @@
         justify-content: space-between;
         padding: 0;
         li{
+            i{
+                vertical-align: top;
+                display: inline-block;
+                margin-right: 10px;
+                font-style: normal;
+                color: #999;
+            }
             a{
+                vertical-align: top;
+                display: inline-block;
+                max-width: 120px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 color: #888;
                 font-weight: 500;
+                @include screen(m){
+                    max-width: 100px;
+                }
                 &:hover{
                     color: $text-navy;
                 }
