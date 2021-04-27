@@ -89,7 +89,7 @@ const BlogIndex = ({ data, location }) => {
             <ol className='lc-post-list'>
                 {rows.length && rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
                     const title = post.frontmatter.title || post.fields.slug
-                    const thumbnail = post.frontmatter.thumbnail ? post.frontmatter.thumbnail?.childImageSharp?.fluid : "/icons/icon-48x48.png"
+                    const thumbnail = post.frontmatter.thumbnail ? post.frontmatter.thumbnail?.childImageSharp?.fluid : null
                     return (
                         <li key={post.fields.slug}>
                             <Link to={post.fields.slug} itemProp="url">
@@ -98,30 +98,34 @@ const BlogIndex = ({ data, location }) => {
                                     itemScope
                                     itemType="http://schema.org/Article"
                                 >
-                                    <div className="lc-post-thumb">
 
+                                    {thumbnail &&
+                                    <div className="lc-post-thumb">
+                                        <Img fluid={[
+                                            thumbnail,
+                                            {
+                                                ...thumbnail,
+                                                media: `(min-width: 800px)`
+                                            }
+                                        ]}/>
                                     </div>
-                                    <header>
-                                        <small>{post.frontmatter.date}</small>
-                                        <h2>
-                                            <span itemProp="headline">{title}</span>
-                                        </h2>
-                                    </header>
-                                    <Img fluid={[
-                                      thumbnail,
-                                      {
-                                        ...thumbnail,
-                                        media: `(min-width: 800px)`
-                                      }
-                                    ]}/>
-                                    <section>
-                                        <div
-                                            dangerouslySetInnerHTML={{
-                                                __html: post.frontmatter.description || post.excerpt,
-                                            }}
-                                            itemProp="description"
-                                        />
-                                    </section>
+                                    }
+                                    <div className="lc-post-cont">
+                                        <header>
+                                            <small>{post.frontmatter.date}</small>
+                                            <h2>
+                                                <span itemProp="headline">{title}</span>
+                                            </h2>
+                                        </header>
+                                        <section>
+                                            <div
+                                                dangerouslySetInnerHTML={{
+                                                    __html: post.frontmatter.description || post.excerpt,
+                                                }}
+                                                itemProp="description"
+                                            />
+                                        </section>
+                                    </div>
                                 </article>
                             </Link>
                         </li>
