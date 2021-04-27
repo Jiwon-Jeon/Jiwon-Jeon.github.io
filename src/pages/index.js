@@ -67,9 +67,16 @@ const BlogIndex = ({ data, location }) => {
         <Layout location={location} title={siteTitle}>
             <Seo title="All posts" />
             <div className='lc-categories'>
-                <button onClick={() => setTag('')}>Home</button>
+                <button className={tag ? '':'lc-active'} onClick={() => setTag('')}>Home</button>
                 {categories.map((category,index) => {
-                    return (<button key={index} onClick={() => setTag(category.fieldValue)}>{category.fieldValue}</button>)
+                    return (
+                        <button
+                            className={tag ===category.fieldValue? 'lc-active':''}
+                            key={index}
+                            onClick={() => setTag(category.fieldValue)}>
+                            {category.fieldValue}
+                        </button>
+                    )
                 })}
             </div>
             {tag ?
@@ -96,7 +103,7 @@ const BlogIndex = ({ data, location }) => {
                                     <header>
                                         <small>{post.frontmatter.date}</small>
                                         <h2>
-                                                <span itemProp="headline">{title}</span>
+                                            <span itemProp="headline">{title}</span>
                                         </h2>
                                     </header>
                                     <section>

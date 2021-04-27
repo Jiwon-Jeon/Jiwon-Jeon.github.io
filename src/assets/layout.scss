@@ -52,6 +52,10 @@
         &:hover{
             color: $text-navy;
         }
+        &.lc-active{
+            font-weight: 700;
+            color: $text-navy;
+        }
     }
 }
 .lc-search-post-top{
@@ -77,6 +81,7 @@
     .post-list-item{
         small{
             color: $theme-blue;
+            font-weight: 700;
         }
         h2{
             margin: 0 0 10px;
