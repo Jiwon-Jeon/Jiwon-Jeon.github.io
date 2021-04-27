@@ -1,9 +1,9 @@
 {
   "name": "gatsby-starter-blog",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "linco developer page",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "linco",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },

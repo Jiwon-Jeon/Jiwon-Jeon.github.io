@@ -1,12 +1,10 @@
 ---
-title: Hello World
+title: 문서 1
 date: "2015-05-01T22:12:03.284Z"
-description: "Hello World"
+description: "문서 1입니다"
+writter: "지원"
+tag: "#javascirpt #react"
 ---
-
-This is my first post on my new fake blog! How exciting!
-
-I'm sure I'll write a lot more interesting things in the future.
 
 Oh, and here's a great quote from this Wikipedia on
 [salted duck eggs](https://en.wikipedia.org/wiki/Salted_duck_egg).
@@ -226,6 +224,3 @@ This paragraph has some `code` in it.
 
     This paragraph has some `code` in it.
 
-![Alt Text](https://placehold.it/200x50 "Image Title")
-
-    ![Alt Text](https://placehold.it/200x50 "Image Title")

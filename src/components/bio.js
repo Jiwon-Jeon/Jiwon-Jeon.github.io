@@ -9,7 +9,8 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
-const Bio = () => {
+
+const Bio = ({writter}) => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       site {
@@ -26,13 +27,15 @@ const Bio = () => {
     }
   `)
 
+  console.log(writter)
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
   const social = data.site.siteMetadata?.social
 
   return (
     <div className="bio">
-      <StaticImage
+      {/* 이미지 수정 */}
+      {/* <StaticImage
         className="bio-avatar"
         layout="fixed"
         formats={["AUTO", "WEBP", "AVIF"]}
@@ -41,15 +44,27 @@ const Bio = () => {
         height={50}
         quality={95}
         alt="Profile picture"
-      />
-      {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            You should follow them on Twitter
-          </a>
-        </p>
+      /> */}
+      {writter && (
+        <>
+          <span style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: 50,
+            height: 50,
+            backgroundColor: "#"+(parseInt(Math.random()*0xffffff)).toString(16),
+            borderRadius: 50,
+          }}>
+            <span style={{
+              color: "white",
+              fontWeight: 700
+            }}>{writter}</span>
+          </span>
+          <p>
+            Written by <strong>{writter}</strong>
+          </p>
+        </>
       )}
     </div>
   )

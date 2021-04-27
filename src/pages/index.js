@@ -9,24 +9,27 @@ const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
 
+  // 작성된 게시글이 있을 때
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
         <Seo title="All posts" />
-        <Bio />
+        <div>Linco Developer Page</div>
         <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
+          린코 입니다.
         </p>
       </Layout>
     )
   }
 
+  // 작성된 게시글이 없을 때
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
-      <Bio />
+      <div>Linco Developer Page</div>
+        <p>
+          린코 입니다.
+        </p>
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
@@ -47,7 +50,7 @@ const BlogIndex = ({ data, location }) => {
                   <small>{post.frontmatter.date}</small>
                 </header>
                 <section>
-                  <p
+                  <div
                     dangerouslySetInnerHTML={{
                       __html: post.frontmatter.description || post.excerpt,
                     }}
@@ -82,6 +85,8 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          tag
+          writter
         }
       }
     }

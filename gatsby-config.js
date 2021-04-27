@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Linco`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `linco`,
+      summary: `Creative Idea, Design and Develop for you 마음 속의 아이디어를 현실로 잇는 창조의 링크.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    siteUrl: `https://linco.netlify.app`,
     social: {
       twitter: `kylemathews`,
     },
@@ -99,6 +99,8 @@ module.exports = {
                     frontmatter {
                       title
                       date
+                      tag
+                      writter
                     }
                   }
                 }

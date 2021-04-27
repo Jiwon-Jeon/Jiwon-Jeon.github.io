@@ -25,13 +25,15 @@ const BlogPostTemplate = ({ data, location }) => {
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
           <p>{post.frontmatter.date}</p>
         </header>
+        <p>{post.frontmatter.writter}님의 글입니다</p>
+        
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
         <hr />
         <footer>
-          <Bio />
+          <Bio writter={post.frontmatter.writter}/>
         </footer>
       </article>
       <nav className="blog-post-nav">
@@ -85,6 +87,8 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tag
+        writter
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
