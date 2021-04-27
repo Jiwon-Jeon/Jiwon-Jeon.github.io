@@ -12,6 +12,7 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-prettier-build`,
     {
       resolve: `gatsby-plugin-sass`,
       options: {
