@@ -3,7 +3,7 @@ title: 문서 1
 date: "2015-05-01T22:12:03.284Z"
 description: "문서 1입니다"
 writter: "지원"
-tag: "#javascirpt #react"
+tag: "Javascirpt"
 ---
 
 Oh, and here's a great quote from this Wikipedia on

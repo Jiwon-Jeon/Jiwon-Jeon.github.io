@@ -1,19 +1,20 @@
 
 .global-wrapper{
     max-width: 670px;
-    padding: 0 10px;
+    @include screen(t,m){
+        padding: 0 10px;
+    }
 }
-.global-header{
-    .main-heading{
-        display: flex;
-        align-items: center;
-        margin: 20px 0;
-        @include screen(m){
-            margin: 10px 0;
-        }
-
+.lc-header-wrap{
+    text-align: center;
+    padding: 20px 0;
+    @include screen(m){
+        display: block;
+        padding: 10px 0;
+    }
+    h1{
+        margin: 0;
         #lcLogo{
-            display: inline-block;
             img{
                 height: 40px;
                 @include screen(m){
@@ -29,10 +30,35 @@
             }
         }
     }
+    .lc-header-text{
+        font-size: 12px;
+        color: #aaa;
+        padding-top: 10px;
+        p{
+            margin: 0;
+        }
+    }
 }
 
-.lc-header-text{
-    p{
-        margin: 0;
+.lc-categories{
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    button{
+        color: #888;
+        font-weight: 500;
+        padding: 4px 8px;
+        margin: 0 4px;
+        &:hover{
+            color: $text-navy;
+        }
     }
+}
+
+.lc-post-list{
+    padding-top: 10px;
+}
+
+footer{
+    border-top: #eee;
 }
