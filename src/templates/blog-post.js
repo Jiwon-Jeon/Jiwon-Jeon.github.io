@@ -82,7 +82,6 @@ export const pageQuery = graphql`
         description
         tag
         writter
-        thumbImage
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

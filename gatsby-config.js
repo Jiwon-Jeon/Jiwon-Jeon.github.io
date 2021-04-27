@@ -108,7 +108,13 @@ module.exports = {
                       date
                       tag
                       writter
-                      thumbImage
+                      thumbnail {
+                        childImageSharp {
+                          fluid(maxWidth: 400) {
+                            ...GatsbyImageSharpFluid
+                          }
+                        }
+                      }
                     }
                   }
                 }

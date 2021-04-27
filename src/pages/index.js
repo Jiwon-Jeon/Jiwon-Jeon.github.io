@@ -2,6 +2,7 @@ import * as React from "react"
 import { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
 
+import Img from "gatsby-image"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -88,7 +89,7 @@ const BlogIndex = ({ data, location }) => {
             <ol className='lc-post-list'>
                 {rows.length && rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
                     const title = post.frontmatter.title || post.fields.slug
-                    console.log(123,post);
+                    const thumbnail = post.frontmatter.thumbnail ? post.frontmatter.thumbnail?.childImageSharp?.fluid : "/icons/icon-48x48.png"
                     return (
                         <li key={post.fields.slug}>
                             <Link to={post.fields.slug} itemProp="url">
@@ -106,6 +107,13 @@ const BlogIndex = ({ data, location }) => {
                                             <span itemProp="headline">{title}</span>
                                         </h2>
                                     </header>
+                                    <Img fluid={[
+                                      thumbnail,
+                                      {
+                                        ...thumbnail,
+                                        media: `(min-width: 800px)`
+                                      }
+                                    ]}/>
                                     <section>
                                         <div
                                             dangerouslySetInnerHTML={{
@@ -148,7 +156,13 @@ export const pageQuery = graphql`
           description
           tag
           writter
-          thumbImage
+          thumbnail {
+            childImageSharp {
+              fluid(maxWidth: 400) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
       }
     }
