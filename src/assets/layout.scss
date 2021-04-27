@@ -1,0 +1,38 @@
+
+.global-wrapper{
+    max-width: 670px;
+    padding: 0 10px;
+}
+.global-header{
+    .main-heading{
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        @include screen(m){
+            margin: 10px 0;
+        }
+
+        #lcLogo{
+            display: inline-block;
+            img{
+                height: 40px;
+                @include screen(m){
+                    height: 24px;
+                }
+            }
+            span{
+                height: 0;
+                width: 0;
+                font-size: 0;
+                overflow: hidden;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.lc-header-text{
+    p{
+        margin: 0;
+    }
+}

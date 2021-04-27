@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import "../assets/components/layout.scss";
+import "../assets/index.scss";
+import logo from "../images/logos/linco-logo.png";
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -10,14 +11,20 @@ const Layout = ({ location, title, children }) => {
   if (isRootPath) {
     header = (
       <h1 className="main-heading">
-        <Link to="/">{title}</Link>
+        <Link to="/" id='lcLogo'>
+            <img src={logo} alt="Linco logo"/>
+            <span>{title}</span>
+        </Link>
       </h1>
     )
   } else {
     header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
+        <h1 className="main-heading">
+          <Link className="header-link-home" id='lcLogo' to="/">
+              <img src={logo} alt="Linco logo"/>
+              <span>{title}</span>
+          </Link>
+        </h1>
     )
   }
 

@@ -14,10 +14,10 @@ const BlogIndex = ({ data, location }) => {
     return (
       <Layout location={location} title={siteTitle}>
         <Seo title="All posts" />
-        <div>Linco Developer Page</div>
-        <p>
-          린코 입니다.
-        </p>
+        <div className='lc-header-text'>
+            <p>Linco Developer Page</p>
+            <p>린코 입니다.</p>
+        </div>
       </Layout>
     )
   }
@@ -26,11 +26,12 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
-      <div>Linco Developer Page</div>
-        <p>
-          린코 입니다.
-        </p>
+        <div className='lc-header-text'>
+            <p>Linco Developer Page</p>
+            <p>린코 입니다.</p>
+        </div>
       <ol style={{ listStyle: `none` }}>
+
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
 

@@ -1,0 +1,37 @@
+// color
+$white: #ffffff;
+$mint : #87B9BA;
+$mint-bold: #84B4B8;
+$mint-active: #75ACB0;
+$dark-mint: #72ACAD;
+$gray: #eef1f6;
+$blue:#20a0ff;
+$blue-hover: #4db3ff;
+$theme-color:#20a0ff;
+$gray-bold: #d1dbe5;
+$text-blue: #48576a;
+$text-color: #222;
+$placeholder-color: #999;
+$danger: #FF4949;
+
+// z-index
+$z-index-loading: 10000;
+$z-index-alert: 9999;
+$z-index-login: 1005;
+$z-index-modal: 1004;
+$z-index-sidebar: 1002;
+$z-index-header: 1000;
+$z-index-support: 1003;
+
+// screen
+$max-m: 767px;
+$min-t: 768px;
+$max-t: 1219px;
+$min-pc: 1220px;
+
+// container
+$container-pc: 1279px;
+
+//modal size
+$modal-big: 700px;
+$modal-md: 400px;

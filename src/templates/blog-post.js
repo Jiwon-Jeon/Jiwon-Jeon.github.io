@@ -5,7 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-import "../assets/templates/blog-post.scss"
+import "../assets/index.scss"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark

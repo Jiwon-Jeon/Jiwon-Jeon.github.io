@@ -1,0 +1,27 @@
+@mixin screen($platform: false, $subPlatform: false) {
+  @if ($platform == pc) {
+    @media screen and (min-width: $min-pc) {
+      @content;
+    }
+  }
+  @else if ($platform == t) {
+    @media screen and (min-width: $min-t) and (max-width: $max-t) {
+      @content;
+    }
+  }
+  @else if ($platform == m) {
+    @media screen and (max-width: $max-m) {
+      @content;
+    }
+  }
+  @if ($subPlatform == t and $platform != t) {
+    @media screen and (min-width: $min-t) and (max-width: $max-t) {
+      @content;
+    }
+  }
+  @if ($subPlatform == m and $platform != m) {
+    @media screen and (max-width: $max-m) {
+      @content;
+    }
+  }
+}
