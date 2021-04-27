@@ -1,5 +1,5 @@
 import * as React from "react"
-import {useState} from "react"
+import { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
@@ -12,7 +12,43 @@ const BlogIndex = ({ data, location }) => {
     const categories = data.allMarkdownRemark.group
 
     const [tag, setTag] = useState("")
+    const [rows, setRows] = useState([])
+    const [size, setSize] = useState(5)
+    const [page, setPage] = useState(1)
+    const [fetching, setFetching] = useState(false)
 
+    useEffect(() => {
+      document.addEventListener("scroll", scrollToLoad)
+      getPosts();
+      return () => (
+        document.removeEventListener("scroll", scrollToLoad)
+      )
+    }, [])
+  
+    useEffect(async () => {
+      if (!fetching) return;
+      await getPosts();
+    }, [fetching]);
+  
+    const getPosts = () => {
+      setRows(posts.map((post, index) => {
+        if(index < size) return post
+      }))
+      setFetching(false);
+    }
+
+    const scrollToLoad = async (e) => {
+      const dh = document.getElementsByTagName("html")[0].scrollHeight;
+      const dch = document.getElementsByTagName("html")[0].clientHeight;
+      const dct = document.getElementsByTagName("html")[0].scrollTop;
+      console.log(dh, dch, dct)
+      if (dh == (dch+dct)) {
+        setPage(page + 1);
+        setSize(size + 5);
+        setFetching(true);
+      }
+    };
+  
     // 작성된 게시글이 있을 때
     if (posts.length === 0) {
         return (
@@ -37,7 +73,7 @@ const BlogIndex = ({ data, location }) => {
                 })}
             </div>
             <ol className='lc-post-list'>
-                {posts.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
+                {rows.length && rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
                     const title = post.frontmatter.title || post.fields.slug
 
                     return (
