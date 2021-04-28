@@ -61,7 +61,7 @@
         padding: 10px 0;
     }
     button{
-        color: #888;
+        color: #999;
         font-weight: 500;
         padding: 4px 0;
         margin-right: 16px;
@@ -114,13 +114,6 @@
         @include screen(m){
             display: block;
         }
-        small{
-            color: $theme-blue;
-            font-weight: 700;
-        }
-        h2{
-            margin: 0 0 10px;
-        }
     }
     .lc-post-thumb{
         width: 100px;
@@ -141,6 +134,19 @@
     }
     .lc-post-cont{
         flex: 1;
+        small{
+            display: inline-block;
+            margin: 4px 0 10px;
+            color: $theme-blue;
+            font-weight: 700;
+        }
+        h2{
+            margin: 0;
+        }
+        .lc-post-tag{
+            font-weight: 500;
+            color: #888;
+        }
     }
 }
 

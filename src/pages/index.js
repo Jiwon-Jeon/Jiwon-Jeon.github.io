@@ -40,22 +40,15 @@ const BlogIndex = ({ data, location }) => {
       setFetching(false);
     }
 
-
-
-
     const handleInputChange = (event) => {
         const query = event.target.value;
 
-        setState({
-            query
-        });
-        console.log(query);
+        setState({query});
     };
 
     const filterData = (e) => {
         e.preventDefault();
-        console.log('click');
-        const { query } = state;
+        const {query} = state;
         if (query) {
             const filteredData = posts.filter((post) => {
                 const { title, tag } = post.frontmatter;
@@ -68,7 +61,7 @@ const BlogIndex = ({ data, location }) => {
         } else {
             setPage(1)
             setSize(5);
-            setTag('');
+            // setTag('');
             setState({query : emptyQuery});
             getPosts();
         }
@@ -112,14 +105,13 @@ const BlogIndex = ({ data, location }) => {
                 </form>
             </div>
 
-
             <div className='lc-categories'>
                 <button className={tag ? '':'lc-active'} onClick={() => setTag('')}>Home</button>
-                {categories && categories.length ? categories.map((category,index) => {
+                {categories && categories.length ? categories.map((category, index) => {
                     return (
                         <button
-                            className={tag ===category.fieldValue? 'lc-active':''}
                             key={index}
+                            className={tag === category.fieldValue? 'lc-active':''}
                             onClick={() => setTag(category.fieldValue)}>
                             {category.fieldValue}
                         </button>
@@ -133,8 +125,9 @@ const BlogIndex = ({ data, location }) => {
                 </div>
             : null}
             <ol className='lc-post-list'>
-                {rows && rows.length ? rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
-                    const title = post.frontmatter.title || post.fields.slug
+                {rows && rows.length ?
+                    rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
+                    const title = post.frontmatter.title || '제목 없음'
                     const thumbnail = post.frontmatter.thumbnail ? post.frontmatter.thumbnail?.childImageSharp?.fluid : null
                     return (
                         <li key={post.fields.slug}>
@@ -144,7 +137,6 @@ const BlogIndex = ({ data, location }) => {
                                     itemScope
                                     itemType="http://schema.org/Article"
                                 >
-
                                     {thumbnail &&
                                     <div className="lc-post-thumb">
                                         <Img fluid={[
@@ -158,10 +150,9 @@ const BlogIndex = ({ data, location }) => {
                                     }
                                     <div className="lc-post-cont">
                                         <header>
+                                            <span className='lc-post-tag'>{post.frontmatter.tag}</span>
+                                            <h2><span itemProp="headline">{title}</span></h2>
                                             <small>{post.frontmatter.date}</small>
-                                            <h2>
-                                                <span itemProp="headline">{title}</span>
-                                            </h2>
                                         </header>
                                         <section>
                                             <div
