@@ -13,6 +13,9 @@
         #lcLogo{
             img{
                 height: 24px;
+                @include screen(m){
+                    height: 20px;
+                }
             }
             span{
                 height: 0;
@@ -27,6 +30,13 @@
         position: absolute;
         right: 0;
         top: 10px;
+    }
+    .lc-src-input{
+        height: 37px;
+        vertical-align: top;
+        border: 1px solid #eee;
+        border-radius: 37px;
+        padding: 0 10px;
     }
     .lc-src-btn{
         width: 37px;
