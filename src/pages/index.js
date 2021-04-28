@@ -55,10 +55,6 @@ const BlogIndex = ({ data, location }) => {
         return (
             <Layout location={location} title={siteTitle}>
                 <Seo title="All posts" />
-                <div className='lc-header-text'>
-                    <p>Linco Developer Page</p>
-                    <p>Creative Idea,Design and Develop for you 마음 속의 아이디어를 현실로 잇는 창조의 링크.</p>
-                </div>
             </Layout>
         )
     }

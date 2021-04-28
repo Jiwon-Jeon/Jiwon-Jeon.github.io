@@ -18,10 +18,6 @@ const Layout = ({ location, title, children }) => {
                         <span>{title}</span>
                     </Link>
                 </h1>
-                <div className='lc-header-text'>
-                    <p>마음 속의 아이디어를 현실로 잇는 창조의 링크</p>
-                    <p>Linco Developer Page</p>
-                </div>
             </div>
         )
     } else {
@@ -33,10 +29,6 @@ const Layout = ({ location, title, children }) => {
                         <span>{title}</span>
                     </Link>
                 </h1>
-                <div className='lc-header-text'>
-                    <p>마음 속의 아이디어를 현실로 잇는 창조의 링크</p>
-                    <p>Linco Developer Page</p>
-                </div>
             </div>
         )
     }

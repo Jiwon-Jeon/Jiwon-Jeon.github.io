@@ -6,20 +6,13 @@
     }
 }
 .lc-header-wrap{
-    text-align: center;
-    padding: 20px 0;
-    @include screen(m){
-        display: block;
-        padding: 10px 0;
-    }
+    padding: 10px 0;
     h1{
         margin: 0;
+        background-image: url($search);
         #lcLogo{
             img{
-                height: 30px;
-                @include screen(m){
-                    height: 24px;
-                }
+                height: 24px;
             }
             span{
                 height: 0;
@@ -30,28 +23,23 @@
             }
         }
     }
-    .lc-header-text{
-        font-size: 12px;
-        color: #999;
-        padding-top: 8px;
-        @include screen(m){
-            font-size: 10px;
-        }
-        p{
-            margin: 0;
-        }
-    }
 }
 
 .lc-categories{
-    text-align: center;
-    padding-bottom: 20px;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    @include screen(m){
+        padding-bottom: 10px;
+    }
     button{
         color: #888;
         font-weight: 500;
-        padding: 4px 8px;
-        margin: 0 4px;
+        padding: 4px 0;
+        margin-right: 16px;
+        &:last-of-type{
+            margin-right: 0;
+        }
         &:hover{
             color: $text-navy;
         }
@@ -80,16 +68,17 @@
     li{
         >a{
             display: block;
-            padding: 40px 20px;
+            padding: 40px 0;
             background-color: #fff;
+            border-bottom: 1px solid #f5f5f5;
             @include screen(pc){
                 transition: padding .2s ease-in-out;
                 &:hover{
-                    padding-left: 30px;
+                    padding-left: 20px;
                 }
             }
             @include screen(m){
-                padding: 24px 10px;
+                padding: 24px 0;
             }
         }
     }

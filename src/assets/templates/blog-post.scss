@@ -62,6 +62,10 @@
     margin-top: 20px;
     border-top: 1px solid #eee;
 
+    @include screen(m){
+        margin-top: 10px;
+    }
+
     hr {
         background: var(--color-accent);
         height: 1px;

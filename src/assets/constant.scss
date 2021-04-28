@@ -36,3 +36,9 @@ $container-pc: 1279px;
 //modal size
 $modal-big: 700px;
 $modal-md: 400px;
+
+//path
+$asset-img: #{'../images/'};
+
+//images
+$search: #{$asset-img}#{'src-icon.svg'};
