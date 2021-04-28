@@ -10,14 +10,20 @@ module.exports = {
     social: {
       twitter: `kylemathews`,
     },
-    thumbnail: `/icons/icon-48x48.png`
+    thumbnail: `/icons/icon-48x48.png`,
   },
   plugins: [
     `gatsby-plugin-prettier-build`,
     {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `linco-developer-blog`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-sass`,
       options: {
-        implementation: require("node-sass"),
+        implementation: require('node-sass'),
       },
     },
     `gatsby-plugin-image`,
@@ -82,16 +88,16 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
+            serialize: ({query: {site, allMarkdownRemark}}) => {
               return allMarkdownRemark.nodes.map(node => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
+                  custom_elements: [{'content:encoded': node.html}],
+                });
+              });
             },
             query: `
               {
@@ -125,7 +131,7 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
+            output: '/rss.xml',
           },
         ],
       },
@@ -148,4 +154,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
