@@ -245,23 +245,26 @@
         }
     }
     .lc-post-header{
-        padding-bottom: 20px;
+        padding: 20px 0;
         margin-bottom: 40px;
         border-bottom: 1px solid #eee;
         text-align: center;
+        @include screen(m){
+            padding: 10px 0;
+        }
         .lc-post-title{
-            margin: 20px 0 10px;
+            margin: 0 0 20px;
+        }
+        .lc-post-tag{
+            font-weight: 500;
+            color: #888;
         }
         .lc-post-info{
-            span{
+            small{
                 display: inline-block;
                 color: $theme-blue;
                 font-weight: 700;
                 margin-right: 10px;
-                font-size: 12px;
-            }
-            i{
-                font-style: normal;
             }
         }
     }

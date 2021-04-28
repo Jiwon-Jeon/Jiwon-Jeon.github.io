@@ -19,7 +19,9 @@ const Layout = ({ location, title, children }) => {
                         <span>{title}</span>
                     </Link>
                 </h1>
-                <button className='lc-src-btn' />
+                <div className="lc-src-wrap">
+                    <button className='lc-src-btn' />
+                </div>
             </div>
         )
     } else {
@@ -31,7 +33,9 @@ const Layout = ({ location, title, children }) => {
                         <span>{title}</span>
                     </Link>
                 </h1>
-                <button className='lc-src-btn' />
+                <div className="lc-src-wrap">
+                    <button className='lc-src-btn' />
+                </div>
             </div>
         )
     }
@@ -39,7 +43,7 @@ const Layout = ({ location, title, children }) => {
     return (
         <div className="global-wrapper" data-is-root-path={isRootPath}>
             <header className="global-header">{header}</header>
-            <Search />
+            {/*<Search />*/}
             <main>{children}</main>
             <footer className='global-footer'>
                 © {new Date().getFullYear()} <a href="https://linco.co.kr">Linco</a>, Built with

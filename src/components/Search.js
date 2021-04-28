@@ -17,12 +17,10 @@ const Search = (props) => {
         const posts = data.allMarkdownRemark.edges || [];
 
         const filteredData = posts.filter((post) => {
-            const { description, title, tags } = post.node.frontmatter;
+            const { title, tag } = post.node.frontmatter;
             return (
-                (description &&
-                    description.toLowerCase().includes(query.toLowerCase())) ||
                 (title && title.toLowerCase().includes(query.toLowerCase())) ||
-                (tags && tags.join("").toLowerCase().includes(query))
+                (tag && tag.toLowerCase().includes(query))
             );
         });
 

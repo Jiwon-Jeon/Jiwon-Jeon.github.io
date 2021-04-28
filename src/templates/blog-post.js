@@ -25,9 +25,10 @@ const BlogPostTemplate = ({ data, location }) => {
                 itemType="http://schema.org/Article"
             >
                 <header className='lc-post-header'>
+                    <div className='lc-post-tag'>{post.frontmatter.tag}</div>
                     <h1 className='lc-post-title' itemProp="headline">{post.frontmatter.title}</h1>
                     <div className='lc-post-info'>
-                        <span>{post.frontmatter.date}</span>
+                        <small>{post.frontmatter.date}</small>
                     </div>
                 </header>
                 {/*<p>{post.frontmatter.writter}님의 글입니다</p>*/}

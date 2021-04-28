@@ -23,10 +23,12 @@
             }
         }
     }
-    .lc-src-btn{
+    .lc-src-wrap{
         position: absolute;
         right: 0;
         top: 10px;
+    }
+    .lc-src-btn{
         width: 37px;
         height: 37px;
         @include background();
@@ -39,11 +41,11 @@
 }
 
 .lc-categories{
-    padding: 10px 0;
+    padding: 16px 0;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
     @include screen(m){
-        padding-bottom: 10px;
+        padding: 10px 0;
     }
     button{
         color: #888;
