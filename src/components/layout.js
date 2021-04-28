@@ -18,6 +18,7 @@ const Layout = ({ location, title, children }) => {
                         <span>{title}</span>
                     </Link>
                 </h1>
+                <button className='lc-src-btn' />
             </div>
         )
     } else {
@@ -29,6 +30,7 @@ const Layout = ({ location, title, children }) => {
                         <span>{title}</span>
                     </Link>
                 </h1>
+                <button className='lc-src-btn' />
             </div>
         )
     }

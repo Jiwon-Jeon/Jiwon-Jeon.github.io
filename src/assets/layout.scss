@@ -6,10 +6,10 @@
     }
 }
 .lc-header-wrap{
+    position: relative;
     padding: 10px 0;
     h1{
         margin: 0;
-        background-image: url($search);
         #lcLogo{
             img{
                 height: 24px;
@@ -21,6 +21,19 @@
                 overflow: hidden;
                 opacity: 0;
             }
+        }
+    }
+    .lc-src-btn{
+        position: absolute;
+        right: 0;
+        top: 10px;
+        width: 37px;
+        height: 37px;
+        @include background();
+        background-size: 24px;
+        background-image: url($search);
+        &:hover{
+            background-image: url($search-ac);
         }
     }
 }
@@ -49,8 +62,7 @@
     }
 }
 .lc-search-post-top{
-    text-align: center;
-    padding: 20px 0;
+    padding: 20px 0 10px;
     span{
         display: inline-block;
         margin-right: 16px;
@@ -78,7 +90,7 @@
                 }
             }
             @include screen(m){
-                padding: 24px 0;
+                padding: 20px 0;
             }
         }
     }
