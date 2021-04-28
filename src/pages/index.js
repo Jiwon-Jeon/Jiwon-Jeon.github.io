@@ -42,15 +42,14 @@ const BlogIndex = ({ data, location }) => {
       const dh = document.getElementsByTagName("html")[0].scrollHeight;
       const dch = document.getElementsByTagName("html")[0].clientHeight;
       const dct = document.getElementsByTagName("html")[0].scrollTop;
-      console.log(dh, dch, dct)
-      if (dh == (dch+dct)) {
+      if (dh === (dch+dct)) {
         setPage(page + 1);
         setSize(size + 5);
         setFetching(true);
       }
     };
   
-    // 작성된 게시글이 있을 때
+    // 작성된 게시글이 없을 때
     if (posts.length === 0) {
         return (
             <Layout location={location} title={siteTitle}>
@@ -59,7 +58,7 @@ const BlogIndex = ({ data, location }) => {
         )
     }
 
-    // 작성된 게시글이 없을 때
+    // 작성된 게시글이 있을 때
     return (
         <Layout location={location} title={siteTitle}>
             <Seo title="All posts" />
