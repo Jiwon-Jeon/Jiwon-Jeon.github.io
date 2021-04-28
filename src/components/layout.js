@@ -19,9 +19,6 @@ const Layout = ({location, title, children}) => {
             <span>{title}</span>
           </Link>
         </h1>
-        <div className="lc-src-wrap">
-          <button className="lc-src-btn" />
-        </div>
       </div>
     );
   } else {
@@ -33,9 +30,6 @@ const Layout = ({location, title, children}) => {
             <span>{title}</span>
           </Link>
         </h1>
-        <div className="lc-src-wrap">
-          <button className="lc-src-btn" />
-        </div>
       </div>
     );
   }

@@ -26,30 +26,33 @@
             }
         }
     }
-    .lc-src-wrap{
-        position: absolute;
-        right: 0;
-        top: 10px;
-    }
-    .lc-src-input{
-        height: 37px;
-        vertical-align: top;
-        border: 1px solid #eee;
-        border-radius: 37px;
-        padding: 0 10px;
-    }
-    .lc-src-btn{
-        width: 37px;
-        height: 37px;
-        @include background();
-        background-size: 24px;
-        background-image: url($search);
-        &:hover{
-            background-image: url($search-ac);
-        }
+
+}
+.lc-search-wrap{
+    position: absolute;
+    right: 0;
+    top: 10px;
+    form{
+        width: 100%;
     }
 }
-
+.lc-src-input{
+    height: 37px;
+    vertical-align: top;
+    border: 1px solid #eee;
+    border-radius: 37px;
+    padding: 0 10px;
+}
+.lc-src-btn{
+    width: 37px;
+    height: 37px;
+    @include background();
+    background-size: 24px;
+    background-image: url($search);
+    &:hover{
+        background-image: url($search-ac);
+    }
+}
 .lc-categories{
     padding: 16px 0;
     border-bottom: 1px solid #eee;

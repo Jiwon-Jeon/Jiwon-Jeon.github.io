@@ -12,11 +12,13 @@ const BlogIndex = ({ data, location }) => {
     const posts = data.allMarkdownRemark.nodes
     const categories = data.allMarkdownRemark.group
 
-    const [tag, setTag] = useState("")
-    const [rows, setRows] = useState([])
-    const [size, setSize] = useState(5)
-    const [page, setPage] = useState(1)
-    const [fetching, setFetching] = useState(false)
+    const emptyQuery = "";
+    const [state, setState] = useState({filteredData: [], query: emptyQuery});
+    const [tag, setTag] = useState("");
+    const [rows, setRows] = useState([]);
+    const [size, setSize] = useState(5);
+    const [page, setPage] = useState(1);
+    const [fetching, setFetching] = useState(false);
 
     useEffect(() => {
       document.addEventListener("scroll", scrollToLoad)
@@ -36,6 +38,40 @@ const BlogIndex = ({ data, location }) => {
         if(index < size) return post
       }))
       setFetching(false);
+    }
+
+
+
+
+    const handleInputChange = (event) => {
+        const query = event.target.value;
+
+        setState({
+            query
+        });
+        console.log(query);
+    };
+
+    const filterData = (e) => {
+        e.preventDefault();
+        console.log('click');
+        const { query } = state;
+        if (query) {
+            const filteredData = posts.filter((post) => {
+                const { title, tag } = post.frontmatter;
+                return (
+                    (title && title.toLowerCase().includes(query.toLowerCase())) ||
+                    (tag && tag.toLowerCase().includes(query))
+                );
+            });
+            setRows(filteredData);
+        } else {
+            setPage(1)
+            setSize(5);
+            setTag('');
+            setState({query : emptyQuery});
+            getPosts();
+        }
     }
 
     const scrollToLoad = async (e) => {
@@ -62,9 +98,24 @@ const BlogIndex = ({ data, location }) => {
     return (
         <Layout location={location} title={siteTitle}>
             <Seo title="All posts" />
+
+            <div className='lc-search-wrap'>
+                <form onSubmit={e => filterData(e)}>
+                    <input
+                        className="lc-src-input"
+                        type="text"
+                        placeholder="Search"
+                        aria-label="Search"
+                        onChange={handleInputChange}
+                    />
+                    <button className="lc-src-btn" type='submit'/>
+                </form>
+            </div>
+
+
             <div className='lc-categories'>
                 <button className={tag ? '':'lc-active'} onClick={() => setTag('')}>Home</button>
-                {categories.map((category,index) => {
+                {categories && categories.length ? categories.map((category,index) => {
                     return (
                         <button
                             className={tag ===category.fieldValue? 'lc-active':''}
@@ -73,7 +124,7 @@ const BlogIndex = ({ data, location }) => {
                             {category.fieldValue}
                         </button>
                     )
-                })}
+                }) : null}
             </div>
             {tag ?
                 <div className='lc-search-post-top'>
@@ -82,7 +133,7 @@ const BlogIndex = ({ data, location }) => {
                 </div>
             : null}
             <ol className='lc-post-list'>
-                {rows.length && rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
+                {rows && rows.length ? rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
                     const title = post.frontmatter.title || post.fields.slug
                     const thumbnail = post.frontmatter.thumbnail ? post.frontmatter.thumbnail?.childImageSharp?.fluid : null
                     return (
@@ -125,7 +176,7 @@ const BlogIndex = ({ data, location }) => {
                             </Link>
                         </li>
                     )
-                })}
+                }) : null}
             </ol>
         </Layout>
     )
