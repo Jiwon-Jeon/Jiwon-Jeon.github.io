@@ -16,11 +16,13 @@
     "gatsby-plugin-google-analytics": "^3.2.0",
     "gatsby-plugin-image": "^1.2.1",
     "gatsby-plugin-manifest": "^3.2.0",
+    "gatsby-plugin-netlify": "^3.4.0",
     "gatsby-plugin-offline": "^4.2.0",
     "gatsby-plugin-prettier-build": "^0.4.4",
     "gatsby-plugin-react-helmet": "^4.2.0",
     "gatsby-plugin-sass": "^4.3.0",
     "gatsby-plugin-sharp": "^3.3.1",
+    "gatsby-plugin-sitemap": "^4.0.0",
     "gatsby-remark-copy-linked-files": "^3.2.0",
     "gatsby-remark-images": "^4.2.0",
     "gatsby-remark-prismjs": "^4.2.0",
@@ -52,7 +54,7 @@
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build && cp src/pages/googleef25a700603fcb34.html public/",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",

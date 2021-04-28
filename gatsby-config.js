@@ -13,6 +13,13 @@ module.exports = {
     thumbnail: `/icons/icon-48x48.png`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+      },
+    },
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-prettier-build`,
     {
       resolve: `gatsby-plugin-disqus`,

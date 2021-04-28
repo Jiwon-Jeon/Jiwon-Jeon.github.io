@@ -32,10 +32,6 @@ const Seo = ({description, lang, meta, title}) => {
 
   return (
     <>
-      <meta
-        name="google-site-verification"
-        content="e_6-rgKcJtqzCGuQvLw0fynevWwPO5eL8D1qEzFc_0U"
-      />
       <Helmet
         htmlAttributes={{
           lang,
