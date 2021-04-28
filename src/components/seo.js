@@ -34,7 +34,7 @@ const Seo = ({description, lang, meta, title}) => {
     <>
       <meta
         name="google-site-verification"
-        content="0_kRGr8o2wPJx7PhNvh4r6EJRJmjBwJXatnMxUnP0VY"
+        content="e_6-rgKcJtqzCGuQvLw0fynevWwPO5eL8D1qEzFc_0U"
       />
       <Helmet
         htmlAttributes={{
