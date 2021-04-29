@@ -14,7 +14,7 @@ const BlogIndex = ({ data, location }) => {
 
     const emptyQuery = "";
     const [state, setState] = useState({filteredData: [], query: emptyQuery});
-    const [tag, setTag] = useState("");
+    const [category, setCategory] = useState("");
     const [rows, setRows] = useState([]);
     const [size, setSize] = useState(5);
     const [page, setPage] = useState(1);
@@ -51,17 +51,21 @@ const BlogIndex = ({ data, location }) => {
         const {query} = state;
         if (query) {
             const filteredData = posts.filter((post) => {
-                const { title, tag } = post.frontmatter;
+                const { title, category, tags } = post.frontmatter;
+                if (tags) {
+                    let tagArr = tags.split('#').splice(0,1);
+                }
                 return (
                     (title && title.toLowerCase().includes(query.toLowerCase())) ||
-                    (tag && tag.toLowerCase().includes(query))
+                    (category && category.toLowerCase().includes(query)) ||
+                    (tags && tags.toLowerCase().includes(query))
                 );
             });
             setRows(filteredData);
         } else {
             setPage(1)
             setSize(5);
-            // setTag('');
+            // setCategory('');
             setState({query : emptyQuery});
             getPosts();
         }
@@ -106,27 +110,27 @@ const BlogIndex = ({ data, location }) => {
             </div>
 
             <div className='lc-categories'>
-                <button className={tag ? '':'lc-active'} onClick={() => setTag('')}>Home</button>
-                {categories && categories.length ? categories.map((category, index) => {
+                <button className={category ? '':'lc-active'} onClick={() => setCategory('')}>Home</button>
+                {categories && categories.length ? categories.map((categoryItem, index) => {
                     return (
                         <button
                             key={index}
-                            className={tag === category.fieldValue? 'lc-active':''}
-                            onClick={() => setTag(category.fieldValue)}>
-                            {category.fieldValue}
+                            className={category === categoryItem.fieldValue? 'lc-active':''}
+                            onClick={() => setCategory(categoryItem.fieldValue)}>
+                            {categoryItem.fieldValue}
                         </button>
                     )
                 }) : null}
             </div>
-            {tag ?
+            {category ?
                 <div className='lc-search-post-top'>
-                    <span>{tag}</span>
-                    <i>게시물 {rows.filter((post) => tag === post.frontmatter.tag).length} 개</i>
+                    <span>{category}</span>
+                    <i>게시물 {rows.filter((post) => category === post.frontmatter.category).length} 개</i>
                 </div>
             : null}
             <ol className='lc-post-list'>
                 {rows && rows.length ?
-                    rows.filter((post) => tag === "" ? post : tag === post.frontmatter.tag).map(post => {
+                    rows.filter((post) => category === "" ? post : category === post.frontmatter.category).map(post => {
                     const title = post.frontmatter.title || '제목 없음'
                     const thumbnail = post.frontmatter.thumbnail ? post.frontmatter.thumbnail?.childImageSharp?.fluid : null
                     return (
@@ -150,7 +154,7 @@ const BlogIndex = ({ data, location }) => {
                                     }
                                     <div className="lc-post-cont">
                                         <header>
-                                            <span className='lc-post-tag'>{post.frontmatter.tag}</span>
+                                            <span className='lc-post-category'>{post.frontmatter.category}</span>
                                             <h2><span itemProp="headline">{title}</span></h2>
                                             <small>{post.frontmatter.date}</small>
                                         </header>
@@ -183,7 +187,7 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      group(field: frontmatter___tag) {
+      group(field: frontmatter___category) {
         fieldValue
       }
       nodes {
@@ -195,8 +199,9 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
-          tag
-          writter
+          tags
+          category
+          writer
           thumbnail {
             childImageSharp {
               fluid(maxWidth: 400) {

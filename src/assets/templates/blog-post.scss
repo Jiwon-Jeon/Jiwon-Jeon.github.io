@@ -227,6 +227,21 @@
     a:focus {
         text-decoration: none;
     }
+    .lc-tag-wrap{
+        padding-top: 20px;
+        .lc-post-tag{
+            display: inline-block;
+            font-weight: 500;
+            color: #999;
+            margin-right: 4px;
+            padding: 4px 8px;
+            border-radius: 36px;
+            border: 1px solid #eee;
+            &:hover{
+                color: $text-navy;
+            }
+        }
+    }
     .lc-post-footer{
         border-top: 1px solid #eee;
         margin-top: 20px;
@@ -255,7 +270,7 @@
         .lc-post-title{
             margin: 0 0 20px;
         }
-        .lc-post-tag{
+        .lc-post-category{
             font-weight: 500;
             color: #999;
         }

@@ -120,8 +120,9 @@ module.exports = {
                     frontmatter {
                       title
                       date
-                      tag
-                      writter
+                      tags
+                      category
+                      writer
                       thumbnail {
                         childImageSharp {
                           fluid(maxWidth: 400) {

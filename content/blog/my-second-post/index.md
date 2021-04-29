@@ -1,9 +1,9 @@
 ---
 title: My Second Post!
 date: "2015-05-06T23:46:37.121Z"
-tag: "Laravel"
-writter: "지원"
+writer: "지원"
 thumbnail: "salty_egg.jpg"
+category: "Laravel"
 ---
 
 Wow! I love blogging so much already.

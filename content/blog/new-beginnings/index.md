@@ -2,8 +2,9 @@
 title: New Beginnings
 date: "2015-05-28T22:40:32.169Z"
 description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
-tag: "Laravel"
-writter: "지원"
+tags: "#Laravel #태그"
+category: "Laravel"
+writer: "지원"
 ---
 
 Far far away, behind the word mountains, far from the countries Vokalia and

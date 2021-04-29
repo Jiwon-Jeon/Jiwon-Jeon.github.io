@@ -10,7 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 
-const Bio = ({writter}) => {
+const Bio = ({writer}) => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       site {
@@ -44,13 +44,13 @@ const Bio = ({writter}) => {
         quality={95}
         alt="Profile picture"
       /> */}
-      {writter && (
+      {writer && (
         <div className='lc-bio-wrap'>
           <div className='lc-bio-thumb'
                style={{backgroundColor: "#"+(parseInt(Math.random()*0xffffff)).toString(16)}}>
-            <span className='lc-bio-thumb-name'>{writter}</span>
+            <span className='lc-bio-thumb-name'>{writer}</span>
           </div>
-          <p className='lc-bio-author'>Written by <strong>{writter}</strong></p>
+          <p className='lc-bio-author'>Written by <strong>{writer}</strong></p>
         </div>
       )}
     </div>

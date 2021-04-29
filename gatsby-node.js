@@ -106,8 +106,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 //       title: String
 //       description: String
 //       date: Date @dateformat
-//       tag: String
-//       writter: String
+//       tags: String
+//       category: String
+//       writer: String
 //       thumbnail: Any
 //     }
 

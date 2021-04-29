@@ -31,21 +31,33 @@ const BlogPostTemplate = ({data, location}) => {
         itemType="http://schema.org/Article"
       >
         <header className="lc-post-header">
-          <div className="lc-post-tag">{post.frontmatter.tag}</div>
+          <div className="lc-post-category">{post.frontmatter.category}</div>
           <h1 className="lc-post-title" itemProp="headline">
             {post.frontmatter.title}
+            {console.log('tags',post.frontmatter.tags)}
           </h1>
           <div className="lc-post-info">
             <small>{post.frontmatter.date}</small>
           </div>
         </header>
-        {/*<p>{post.frontmatter.writter}님의 글입니다</p>*/}
+        {/*<p>{post.frontmatter.writer}님의 글입니다</p>*/}
         <section
           dangerouslySetInnerHTML={{__html: post.html}}
           itemProp="articleBody"
         />
+        <div className='lc-tag-wrap'>
+          {post.frontmatter.tags ?
+              post.frontmatter.tags.split('#').map((tagItem,tagIndex)=>{
+                if(tagIndex > 0){
+                  return(
+                      <span className='lc-post-tag'>#{tagItem}</span>
+                  )
+                }
+              })
+            : null}
+        </div>
         <footer className="lc-post-footer">
-          <Bio writter={post.frontmatter.writter} />
+          <Bio writer={post.frontmatter.writer} />
           <Disqus config={disqusConfig} />
         </footer>
       </article>
@@ -98,8 +110,9 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
-        tag
-        writter
+        category
+        tags
+        writer
       }
     }
     previous: markdownRemark(id: {eq: $previousPostId}) {

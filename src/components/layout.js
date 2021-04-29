@@ -2,7 +2,6 @@ import * as React from 'react';
 import {Link} from 'gatsby';
 import '../assets/index.scss';
 import logo from '../images/logos/linco-logo.png';
-import Search from './search';
 import Seo from './seo';
 
 const Layout = ({location, title, children}) => {
@@ -37,7 +36,6 @@ const Layout = ({location, title, children}) => {
   return (
     <div className="global-wrapper" data-is-root-path={isRootPath}>
       <header className="global-header">{header}</header>
-      {/*<Search />*/}
       <main>{children}</main>
       <footer className="global-footer">
         © {new Date().getFullYear()} <a href="https://linco.co.kr">Linco</a>,
