@@ -1,184 +1,184 @@
 .global-wrapper {
-  max-width: 670px;
-  @include screen(t, m) {
-    padding: 0 10px;
-  }
+    max-width: 670px;
+    @include screen(t, m) {
+        padding: 0 10px;
+    }
 }
 .lc-header-wrap {
-  position: relative;
-  padding: 10px 0;
-  h1 {
-    margin: 0;
-    #lcLogo {
-      img {
-        height: 24px;
-        @include screen(m) {
-          height: 20px;
+    position: relative;
+    padding: 10px 0;
+    h1 {
+        margin: 0;
+        #lcLogo {
+            img {
+                height: 24px;
+                @include screen(m) {
+                    height: 20px;
+                }
+            }
+            span {
+                height: 0;
+                width: 0;
+                font-size: 0;
+                overflow: hidden;
+                opacity: 0;
+            }
         }
-      }
-      span {
-        height: 0;
-        width: 0;
-        font-size: 0;
-        overflow: hidden;
-        opacity: 0;
-      }
     }
-  }
 }
 .lc-search-wrap {
-  position: absolute;
-  right: 0;
-  top: 10px;
-  form {
-    width: 100%;
-  }
+    position: absolute;
+    right: 0;
+    top: 10px;
+    form {
+        width: 100%;
+    }
 }
 .lc-src-input {
-  height: 37px;
-  vertical-align: top;
-  border: 1px solid #eee;
-  border-radius: 37px;
-  padding: 0 10px;
+    height: 37px;
+    vertical-align: top;
+    border: 1px solid #eee;
+    border-radius: 37px;
+    padding: 0 10px;
 }
 .lc-src-btn {
-  width: 37px;
-  height: 37px;
-  @include background();
-  background-size: 24px;
-  background-image: url($search);
-  &:hover {
-    background-image: url($search-ac);
-  }
+    width: 37px;
+    height: 37px;
+    @include background();
+    background-size: 24px;
+    background-image: url($search);
+    &:hover {
+        background-image: url($search-ac);
+    }
 }
 .lc-categories {
-  padding: 16px 0;
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #eee;
-  @include screen(m) {
-    padding: 10px 0;
-  }
-  button,
-  a {
-    color: #999;
-    font-weight: 500;
-    padding: 4px 0;
-    margin-right: 16px;
-    &:last-of-type {
-      margin-right: 0;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    @include screen(m) {
+        padding: 10px 0;
     }
-    &:hover {
-      color: $text-navy;
+    button,
+    a {
+        color: #999;
+        font-weight: 500;
+        padding: 4px 0;
+        margin-right: 16px;
+        &:last-of-type {
+            margin-right: 0;
+        }
+        &:hover {
+            color: $text-navy;
+        }
+        &.lc-active {
+            color: $text-navy;
+        }
     }
-    &.lc-active {
-      color: $text-navy;
-    }
-  }
 }
 .lc-search-post-top {
-  padding: 20px 0 10px;
-  span {
-    display: inline-block;
-    margin-right: 16px;
-    font-weight: bold;
-    font-size: 1.2em;
-    color: $text-navy;
-  }
-  i {
-    font-style: normal;
-    font-size: 12px;
-    color: #999;
-  }
+    padding: 20px 0 10px;
+    span {
+        display: inline-block;
+        margin-right: 16px;
+        font-weight: bold;
+        font-size: 1.2em;
+        color: $text-navy;
+    }
+    i {
+        font-style: normal;
+        font-size: 12px;
+        color: #999;
+    }
 }
 .lc-post-list {
-  li {
-    > a {
-      display: block;
-      padding: 40px 0;
-      background-color: #fff;
-      border-bottom: 1px solid #f5f5f5;
-      @include screen(pc) {
-        transition: padding 0.2s ease-in-out;
-        &:hover {
-          padding-left: 20px;
+    li {
+        > a {
+            display: block;
+            padding: 40px 0;
+            background-color: #fff;
+            border-bottom: 1px solid #f5f5f5;
+            @include screen(pc) {
+                transition: padding 0.2s ease-in-out;
+                &:hover {
+                    padding-left: 20px;
+                }
+            }
+            @include screen(m) {
+                padding: 20px 0;
+            }
         }
-      }
-      @include screen(m) {
-        padding: 20px 0;
-      }
     }
-  }
-  .post-list-item {
-    display: flex;
-    @include screen(m) {
-      display: block;
+    .post-list-item {
+        display: flex;
+        @include screen(m) {
+            display: block;
+        }
     }
-  }
-  .lc-post-thumb {
-    width: 100px;
-    height: 100px;
-    margin-right: 16px;
-    border-radius: 100%;
-    overflow: hidden;
-    @include screen(m) {
-      width: 50px;
-      height: 50px;
-      margin-right: 0;
-      margin-bottom: 8px;
+    .lc-post-thumb {
+        width: 100px;
+        height: 100px;
+        margin-right: 16px;
+        border-radius: 100%;
+        overflow: hidden;
+        @include screen(m) {
+            width: 50px;
+            height: 50px;
+            margin-right: 0;
+            margin-bottom: 8px;
+        }
+        .gatsby-image-wrapper {
+            width: 100%;
+            height: 100%;
+        }
     }
-    .gatsby-image-wrapper {
-      width: 100%;
-      height: 100%;
+    .lc-post-cont {
+        flex: 1;
+        small {
+            display: inline-block;
+            margin: 4px 0 10px;
+            color: $theme-blue;
+            font-weight: 700;
+        }
+        h2 {
+            margin: 0;
+        }
+        .lc-post-category {
+            font-weight: 500;
+            color: #888;
+        }
     }
-  }
-  .lc-post-cont {
-    flex: 1;
-    small {
-      display: inline-block;
-      margin: 4px 0 10px;
-      color: $theme-blue;
-      font-weight: 700;
-    }
-    h2 {
-      margin: 0;
-    }
-    .lc-post-category {
-      font-weight: 500;
-      color: #888;
-    }
-  }
 }
 
 .lc-bio-wrap {
-  display: flex;
-  align-items: center;
-  padding-bottom: 20px;
-  .lc-bio-thumb {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    margin-right: 10px;
-    .lc-bio-thumb-name {
-      color: #fff !important;
-      font-weight: 700;
+    padding-bottom: 20px;
+    .lc-bio-thumb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        margin-right: 10px;
+        .lc-bio-thumb-name {
+            color: #fff !important;
+            font-weight: 700;
+        }
     }
-  }
-  .lc-bio-author {
-    line-height: 50px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
+    .lc-bio-author {
+        line-height: 50px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 }
 
 .global-footer {
-  padding: 40px 0 20px;
-  text-align: center;
-  color: #aaa;
-  font-size: 12px;
-  a {
-    color: #aaa !important;
-  }
+    padding: 40px 0 20px;
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    a {
+        color: #aaa !important;
+    }
 }
