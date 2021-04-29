@@ -1,12 +1,10 @@
 ---
 title: 문서 1
-date: "2015-05-01T22:12:03.284Z"
-description: "문서 1입니다"
-writer: "지원"
-tags: "#Javascript"
-thumbnail: "salty_egg.jpg"
-category: "Javascript"
-
+date: '2015-05-01T22:12:03.284Z'
+description: '문서 1입니다'
+writer: '지원'
+tags: '#Javascript'
+category: 'Javascript'
 ---
 
 Oh, and here's a great quote from this Wikipedia on
@@ -19,12 +17,12 @@ Oh, and here's a great quote from this Wikipedia on
 > wrapped in plastic, and vacuum packed. From the salt curing process, the
 > salted duck eggs have a briny aroma, a gelatin-like egg white and a
 > firm-textured, round yolk that is bright orange-red in color.
-![Chinese Salty Egg](./salty_egg.jpg)
+> ![Chinese Salty Egg](./salty_egg.jpg)
 
 You can also write code blocks here!
 
 ```js
-const saltyDuckEgg = "chinese preserved food product"
+const saltyDuckEgg = 'chinese preserved food product';
 ```
 
 | Number | Title                                    | Year |
@@ -108,38 +106,38 @@ This is a paragraph.
     >
     >     Markdown.generate();
 
-- Red
-- Green
-- Blue
+-   Red
+-   Green
+-   Blue
 
-* Red
-* Green
-* Blue
+*   Red
+*   Green
+*   Blue
 
-- Red
-- Green
-- Blue
+-   Red
+-   Green
+-   Blue
 
 ```markdown
-- Red
-- Green
-- Blue
+-   Red
+-   Green
+-   Blue
 
-* Red
-* Green
-* Blue
+*   Red
+*   Green
+*   Blue
 
-- Red
-- Green
-- Blue
+-   Red
+-   Green
+-   Blue
 ```
 
-- `code goes` here in this line
-- **bold** goes here
+-   `code goes` here in this line
+-   **bold** goes here
 
 ```markdown
-- `code goes` here in this line
-- **bold** goes here
+-   `code goes` here in this line
+-   **bold** goes here
 ```
 
 1. Buy flour and salt
@@ -190,13 +188,13 @@ Paragraph:
 
     ---------------------------------------
 
-This is [an example](http://example.com "Example") link.
+This is [an example](http://example.com 'Example') link.
 
 [This link](http://example.com) has no title attr.
 
 This is [an example][id] reference-style link.
 
-[id]: http://example.com "Optional Title"
+[id]: http://example.com 'Optional Title'
 
     This is [an example](http://example.com "Example") link.
 
@@ -225,4 +223,3 @@ _single underscores_
 This paragraph has some `code` in it.
 
     This paragraph has some `code` in it.
-

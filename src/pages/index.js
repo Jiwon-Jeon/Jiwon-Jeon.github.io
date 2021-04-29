@@ -5,7 +5,7 @@ import {parse} from 'query-string';
 import {globalHistory} from '@reach/router';
 
 import Img from 'gatsby-image';
-import Bio from '../components/bio';
+//import Bio from '../components/bio';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 
@@ -22,17 +22,13 @@ const BlogIndex = ({data, location}) => {
     const [rows, setRows] = useState([]);
     const [size, setSize] = useState(5);
     const [page, setPage] = useState(1);
-    const [fetching, setFetching] = useState(false);
+    const [fetching, setFetching] = useState(true);
 
     useEffect(() => {
+        if (!fetching) return;
         document.addEventListener('scroll', scrollToLoad);
         getPosts();
         return () => document.removeEventListener('scroll', scrollToLoad);
-    }, []);
-
-    useEffect(async () => {
-        if (!fetching) return;
-        await getPosts();
     }, [fetching]);
 
     const getPosts = () => {
@@ -193,13 +189,7 @@ const BlogIndex = ({data, location}) => {
                                               {thumbnail && (
                                                   <div className="lc-post-thumb">
                                                       <Img
-                                                          fluid={[
-                                                              thumbnail,
-                                                              {
-                                                                  ...thumbnail,
-                                                                  media: `(min-width: 800px)`,
-                                                              },
-                                                          ]}
+                                                          fluid={[thumbnail]}
                                                       />
                                                   </div>
                                               )}
@@ -274,8 +264,12 @@ export const pageQuery = graphql`
                     writer
                     thumbnail {
                         childImageSharp {
-                            fluid(maxWidth: 400) {
-                                ...GatsbyImageSharpFluid
+                            fluid(maxWidth: 600, quality: 100) {
+                                base64
+                                aspectRatio
+                                src
+                                srcSet
+                                sizes
                             }
                         }
                     }
