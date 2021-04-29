@@ -9,20 +9,29 @@ import Img from 'gatsby-image';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 
+const DEFAULT_STATE = {
+    searchText: {
+        filteredData: [],
+        query: '',
+    },
+    category: parse(globalHistory.location.search)?.category || '',
+    rows: [],
+    size: 5,
+    page: 1,
+    fetching: true,
+};
+
 const BlogIndex = ({data, location}) => {
     const siteTitle = data.site.siteMetadata?.title || `Title`;
     const posts = data.allMarkdownRemark.nodes;
     const categories = data.allMarkdownRemark.group;
 
-    const emptyQuery = '';
-    const [state, setState] = useState({filteredData: [], query: emptyQuery});
-    const [category, setCategory] = useState(
-        parse(globalHistory.location.search)?.category || '',
-    );
-    const [rows, setRows] = useState([]);
-    const [size, setSize] = useState(5);
-    const [page, setPage] = useState(1);
-    const [fetching, setFetching] = useState(true);
+    const [searchText, setSearchText] = useState(DEFAULT_STATE.searchText);
+    const [category, setCategory] = useState(DEFAULT_STATE.category);
+    const [rows, setRows] = useState(DEFAULT_STATE.rows);
+    const [size, setSize] = useState(DEFAULT_STATE.size);
+    const [page, setPage] = useState(DEFAULT_STATE.page);
+    const [fetching, setFetching] = useState(DEFAULT_STATE.fetching);
 
     useEffect(() => {
         if (!fetching) return;
@@ -40,35 +49,35 @@ const BlogIndex = ({data, location}) => {
         setFetching(false);
     };
 
+    const goHome = () => {
+        setSearchText(DEFAULT_STATE.searchText);
+        setCategory(DEFAULT_STATE.category);
+        setRows(DEFAULT_STATE.rows);
+        setSize(DEFAULT_STATE.size);
+        setPage(DEFAULT_STATE.page);
+        setFetching(DEFAULT_STATE.fetching);
+    };
+
     const handleInputChange = event => {
         const query = event.target.value;
-
-        setState({query});
+        setSearchText({query});
     };
 
     const filterData = e => {
         e.preventDefault();
-        const {query} = state;
+        const {query} = searchText;
         if (query) {
             const filteredData = posts.filter(post => {
                 const {title, category, tags} = post.frontmatter;
-                if (tags) {
-                    let tagArr = tags.split('#').splice(0, 1);
-                }
                 return (
-                    (title &&
-                        title.toLowerCase().includes(query.toLowerCase())) ||
+                    (title && title.toLowerCase().includes(query.toLowerCase())) ||
                     (category && category.toLowerCase().includes(query)) ||
                     (tags && tags.toLowerCase().includes(query))
                 );
             });
             setRows(filteredData);
         } else {
-            setPage(1);
-            setSize(5);
-            // setCategory('');
-            setState({query: emptyQuery});
-            getPosts();
+            goHome();
         }
     };
 
@@ -86,11 +95,7 @@ const BlogIndex = ({data, location}) => {
     // 작성된 게시글이 없을 때
     if (posts.length === 0) {
         return (
-            <Layout
-                location={location}
-                title={siteTitle}
-                goHome={() => setCategory('')}
-            >
+            <Layout location={location} title={siteTitle} goHome={goHome}>
                 <Seo title="All posts" />
             </Layout>
         );
@@ -98,11 +103,7 @@ const BlogIndex = ({data, location}) => {
 
     // 작성된 게시글이 있을 때
     return (
-        <Layout
-            location={location}
-            title={siteTitle}
-            goHome={() => setCategory('')}
-        >
+        <Layout location={location} title={siteTitle} goHome={goHome}>
             <Seo title="All posts" />
             <div className="lc-search-wrap">
                 <form onSubmit={e => filterData(e)}>
@@ -118,11 +119,7 @@ const BlogIndex = ({data, location}) => {
             </div>
 
             <div className="lc-categories">
-                <Link
-                    to={`/?category=`}
-                    className={category ? '' : 'lc-active'}
-                    onClick={() => setCategory('')}
-                >
+                <Link to={`/?category=`} className={category ? '' : 'lc-active'} onClick={() => setCategory('')}>
                     Home
                 </Link>
                 {categories && categories.length
@@ -131,14 +128,8 @@ const BlogIndex = ({data, location}) => {
                               <Link
                                   to={`/?category=${categoryItem.fieldValue}`}
                                   key={index}
-                                  className={
-                                      category === categoryItem.fieldValue
-                                          ? 'lc-active'
-                                          : ''
-                                  }
-                                  onClick={() =>
-                                      setCategory(categoryItem.fieldValue)
-                                  }
+                                  className={category === categoryItem.fieldValue ? 'lc-active' : ''}
+                                  onClick={() => setCategory(categoryItem.fieldValue)}
                               >
                                   {categoryItem.fieldValue}
                               </Link>
@@ -149,38 +140,21 @@ const BlogIndex = ({data, location}) => {
             {category ? (
                 <div className="lc-search-post-top">
                     <span>{category}</span>
-                    <i>
-                        게시물{' '}
-                        {
-                            rows.filter(
-                                post => category === post.frontmatter.category,
-                            ).length
-                        }{' '}
-                        개
-                    </i>
+                    <i>게시물 {rows.filter(post => category === post.frontmatter.category).length} 개</i>
                 </div>
             ) : null}
             <ol className="lc-post-list">
                 {rows && rows.length
                     ? rows
-                          .filter(post =>
-                              category === ''
-                                  ? post
-                                  : category === post.frontmatter.category,
-                          )
+                          .filter(post => (category === '' ? post : category === post.frontmatter.category))
                           .map(post => {
-                              const title =
-                                  post.frontmatter.title || '제목 없음';
+                              const title = post.frontmatter.title || '제목 없음';
                               const thumbnail = post.frontmatter.thumbnail
-                                  ? post.frontmatter.thumbnail?.childImageSharp
-                                        ?.fluid
+                                  ? post.frontmatter.thumbnail?.childImageSharp?.fluid
                                   : null;
                               return (
                                   <li key={post.fields.slug}>
-                                      <Link
-                                          to={post.fields.slug}
-                                          itemProp="url"
-                                      >
+                                      <Link to={post.fields.slug} itemProp="url">
                                           <article
                                               className="post-list-item"
                                               itemScope
@@ -188,39 +162,23 @@ const BlogIndex = ({data, location}) => {
                                           >
                                               {thumbnail && (
                                                   <div className="lc-post-thumb">
-                                                      <Img
-                                                          fluid={[thumbnail]}
-                                                      />
+                                                      <Img fluid={[thumbnail]} />
                                                   </div>
                                               )}
                                               <div className="lc-post-cont">
                                                   <header>
                                                       <span className="lc-post-category">
-                                                          {
-                                                              post.frontmatter
-                                                                  .category
-                                                          }
+                                                          {post.frontmatter.category}
                                                       </span>
                                                       <h2>
-                                                          <span itemProp="headline">
-                                                              {title}
-                                                          </span>
+                                                          <span itemProp="headline">{title}</span>
                                                       </h2>
-                                                      <small>
-                                                          {
-                                                              post.frontmatter
-                                                                  .date
-                                                          }
-                                                      </small>
+                                                      <small>{post.frontmatter.date}</small>
                                                   </header>
                                                   <section>
                                                       <div
                                                           dangerouslySetInnerHTML={{
-                                                              __html:
-                                                                  post
-                                                                      .frontmatter
-                                                                      .description ||
-                                                                  post.excerpt,
+                                                              __html: post.frontmatter.description || post.excerpt,
                                                           }}
                                                           itemProp="description"
                                                       />

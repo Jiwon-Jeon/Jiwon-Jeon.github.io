@@ -20,20 +20,10 @@ const BlogPostTemplate = ({data, location}) => {
 
     return (
         <Layout location={location} title={siteTitle}>
-            <Seo
-                title={post.frontmatter.title}
-                description={post.frontmatter.description || post.excerpt}
-            />
-            <article
-                id="post"
-                className="blog-post"
-                itemScope
-                itemType="http://schema.org/Article"
-            >
+            <Seo title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} />
+            <article id="post" className="blog-post" itemScope itemType="http://schema.org/Article">
                 <header className="lc-post-header">
-                    <div className="lc-post-category">
-                        {post.frontmatter.category}
-                    </div>
+                    <div className="lc-post-category">{post.frontmatter.category}</div>
                     <h1 className="lc-post-title" itemProp="headline">
                         {post.frontmatter.title}
                         {console.log('tags', post.frontmatter.tags)}
@@ -43,23 +33,14 @@ const BlogPostTemplate = ({data, location}) => {
                     </div>
                 </header>
                 {/*<p>{post.frontmatter.writer}님의 글입니다</p>*/}
-                <section
-                    dangerouslySetInnerHTML={{__html: post.html}}
-                    itemProp="articleBody"
-                />
+                <section dangerouslySetInnerHTML={{__html: post.html}} itemProp="articleBody" />
                 <div className="lc-tag-wrap">
                     {post.frontmatter.tags
-                        ? post.frontmatter.tags
-                              .split('#')
-                              .map((tagItem, tagIndex) => {
-                                  if (tagIndex > 0) {
-                                      return (
-                                          <span className="lc-post-tag">
-                                              #{tagItem}
-                                          </span>
-                                      );
-                                  }
-                              })
+                        ? post.frontmatter.tags.split('#').map((tagItem, tagIndex) => {
+                              if (tagIndex > 0) {
+                                  return <span className="lc-post-tag">#{tagItem}</span>;
+                              }
+                          })
                         : null}
                 </div>
                 <footer className="lc-post-footer">
@@ -98,11 +79,7 @@ const BlogPostTemplate = ({data, location}) => {
 export default BlogPostTemplate;
 
 export const pageQuery = graphql`
-    query BlogPostBySlug(
-        $id: String!
-        $previousPostId: String
-        $nextPostId: String
-    ) {
+    query BlogPostBySlug($id: String!, $previousPostId: String, $nextPostId: String) {
         site {
             siteMetadata {
                 title

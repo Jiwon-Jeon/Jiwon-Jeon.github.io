@@ -48,9 +48,7 @@ const Bio = ({writer}) => {
                     <div
                         className="lc-bio-thumb"
                         style={{
-                            backgroundColor:
-                                '#' +
-                                parseInt(Math.random() * 0xffffff).toString(16),
+                            backgroundColor: '#' + parseInt(Math.random() * 0xffffff).toString(16),
                         }}
                     >
                         <span className="lc-bio-thumb-name">{writer}</span>
