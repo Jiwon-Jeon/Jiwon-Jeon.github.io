@@ -4,7 +4,7 @@ import '../assets/index.scss';
 import logo from '../images/logos/linco-logo.png';
 import Seo from './seo';
 
-const Layout = ({location, title, children}) => {
+const Layout = ({location, title, children, goHome}) => {
   const rootPath = `${__PATH_PREFIX__}/`;
   const isRootPath = location.pathname === rootPath;
   let header;
@@ -13,7 +13,7 @@ const Layout = ({location, title, children}) => {
     header = (
       <div className="lc-header-wrap">
         <h1>
-          <Link to="/" id="lcLogo">
+          <Link to="/" id="lcLogo" onClick={goHome}>
             <img src={logo} alt="Linco logo" />
             <span>{title}</span>
           </Link>
